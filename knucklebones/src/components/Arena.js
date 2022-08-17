@@ -13,14 +13,14 @@ function Arena() {
         <div className="tile">tile</div>
         <div className="tile">tile</div>
         <div className="tile">tile</div>
-        <div className="score">score</div>
-        <div className="score">score</div>
-        <div className="score">score</div>
+        <div className="score">5</div>
+        <div className="score">2</div>
+        <div className="score">4</div>
       </div>
       <div className="board board--bottom">
-        <div className="score">score</div>
-        <div className="score">score</div>
-        <div className="score">score</div>
+        <div className="score">1</div>
+        <div className="score">25</div>
+        <div className="score">36</div>
         <div className="tile">tile</div>
         <div className="tile">tile</div>
         <div className="tile">tile</div>
