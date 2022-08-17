@@ -1,11 +1,12 @@
 import React from "react";
 
-function Player() {
+function Player(props) {
   return (
-    <div className="Player">
-      <h1>Player Name</h1>
+    <div className={`Player player--${props.playerNumber}`}>
+      {props.playerNumber === "two" && <h3>Current Dice</h3>}
+      <h1>Player {props.playerNumber}</h1>
       <h2>15</h2>
-      <h3>Current Dice</h3>
+      {props.playerNumber === "one" && <h3>Current Dice</h3>}
     </div>
   );
 }
