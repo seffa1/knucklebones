@@ -1,12 +1,12 @@
 import "./App.css";
 import Player from "./components/Player";
-import Board from "./components/Board";
+import Arena from "./components/Arena";
 
 function App() {
   return (
     <div className="App">
       <Player />
-      <Board />
+      <Arena />
       <Player />
     </div>
   );
