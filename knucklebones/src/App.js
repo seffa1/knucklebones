@@ -67,7 +67,9 @@ function App() {
 
     // Update the board state
 
-    // Reset dice on prev player
+    // Check if the game is over
+
+    // Reset dice on prev player and roll dice for next player
     if (currentTurn === 1) {
       setPlayerOneData((prev) => {
         return { ...prev, currentDice: null };
