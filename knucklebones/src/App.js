@@ -67,11 +67,27 @@ function App() {
 
     // Update the board state
 
-    // Change game state to other players turn
-
     // Reset dice on prev player
+    if (currentTurn === 1) {
+      setPlayerOneData((prev) => {
+        return { ...prev, currentDice: null };
+      });
+      setPlayerTwoData((prev) => {
+        return { ...prev, currentDice: rollDice() };
+      });
+    } else {
+      setPlayerTwoData((prev) => {
+        return { ...prev, currentDice: null };
+      });
+      setPlayerOneData((prev) => {
+        return { ...prev, currentDice: rollDice() };
+      });
+    }
 
-    // Roll dice for next player
+    // Change game state to other players turn
+    setCurrentTurn((prev) => {
+      return prev === 1 ? 2 : 1;
+    });
   }
 
   // Utility
@@ -89,7 +105,7 @@ function App() {
         currentTurn={currentTurn}
         playerId={playerOneData.id}
       />
-      <Arena placeDice={placeDice} />
+      <Arena placeDice={placeDice} currentTurn={currentTurn} />
       <Player
         playerNumber="two"
         score={playerTwoData.scoreTotal}
