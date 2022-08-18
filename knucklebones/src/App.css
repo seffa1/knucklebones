@@ -45,6 +45,10 @@ h3 {
   padding-top: 30vh;
 }
 
+.currentPlayer {
+  background-color: gold;
+}
+
 @media screen and (max-width: 800px) {
   .player--one,
   .player--two {
