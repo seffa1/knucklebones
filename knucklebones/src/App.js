@@ -62,8 +62,13 @@ function App() {
     console.log(dice, board, column);
 
     // Check is the column is already full, if so, return
-
-    // Else, place dice number in the correct spot
+    if (board === "top") {
+      // if column is the left column
+      // check if first row is empty, if so place in that row
+      // check if the second row is empty, if so place in that row
+      // check if the third row is empty, if so place in that row
+      // if all full, return
+    }
 
     // Update the board state
 
