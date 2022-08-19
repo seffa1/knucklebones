@@ -10,12 +10,12 @@ function App() {
     id: 1,
     currentDice: rollDice(),
     board: {
-      L1: null,
-      L2: null,
-      L3: null,
-      M1: null,
-      M2: null,
-      M3: null,
+      L1: 4,
+      L2: 4,
+      L3: 4,
+      M1: 4,
+      M2: 4,
+      M3: 4,
       R1: null,
       R2: null,
       R3: null,
@@ -27,12 +27,12 @@ function App() {
     id: 2,
     currentDice: null,
     board: {
-      L1: null,
-      L2: null,
-      L3: null,
-      M1: null,
-      M2: null,
-      M3: null,
+      L1: 5,
+      L2: 5,
+      L3: 5,
+      M1: 5,
+      M2: 5,
+      M3: 5,
       R1: null,
       R2: null,
       R3: null,
@@ -46,6 +46,15 @@ function App() {
   const [scorePlayerOne, setScorePlayerOne] = React.useState(0);
   const [scorePlayerTwo, setScorePlayerTwo] = React.useState(0);
 
+  // Effects
+  // Check if the game is over
+  React.useEffect(() => {
+    checkGameOver();
+  }, [playerOneData]);
+  React.useEffect(() => {
+    checkGameOver();
+  }, [playerTwoData]);
+
   // Helpers
   function updateScores(dice, player) {
     if (player === 1) {
@@ -57,10 +66,28 @@ function App() {
   }
 
   function checkGameOver() {
-    // loop through player one's board values
-    // if all are not null, return true else continue
+    console.log("Checking game over...");
+    if (gameState === "end") return;
+
+    // assume both boards are full
+    let playerOneFull = true;
+    let playerTwoFull = true;
+
+    // check if thats not the case for either player
+    // console.log(playerOneData.board);
+    for (let tile in playerOneData.board) {
+      // console.log(tile, playerOneData.board[tile]);
+      if (!playerOneData.board[tile]) playerOneFull = false;
+    }
+
     // loop through player twos' board values
-    // if all are not null, return true, else return false
+    for (let tile in playerTwoData.board) {
+      if (!playerTwoData.board[tile]) playerTwoFull = false;
+    }
+
+    console.log("game over? " + (playerOneFull || playerTwoFull));
+
+    if (playerOneFull || playerTwoFull) setGameState("end");
   }
 
   function setDice(board, location, dice) {
@@ -85,6 +112,8 @@ function App() {
 
   // Handlers
   function placeDice(board, column) {
+    if (gameState === "end") return;
+
     // Get the current dice number
     let dice =
       currentTurn === 1 ? playerOneData.currentDice : playerTwoData.currentDice;
@@ -151,8 +180,6 @@ function App() {
       }
       updateScores(dice, 1);
     }
-
-    // Check if the game is over
 
     // Reset dice on prev player and roll dice for next player
     if (currentTurn === 1) {
