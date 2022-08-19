@@ -46,7 +46,7 @@ function App() {
   const [scorePlayerOne, setScorePlayerOne] = React.useState(0);
   const [scorePlayerTwo, setScorePlayerTwo] = React.useState(0);
 
-  // Update the scores each cycle
+  // Helpers
   function updateScores(dice, player) {
     if (player === 1) {
       setScorePlayerOne((prev) => prev + dice);
@@ -54,6 +54,13 @@ function App() {
     if (player === 2) {
       setScorePlayerTwo((prev) => prev + dice);
     }
+  }
+
+  function checkGameOver() {
+    // loop through player one's board values
+    // if all are not null, return true else continue
+    // loop through player twos' board values
+    // if all are not null, return true, else return false
   }
 
   function setDice(board, location, dice) {
