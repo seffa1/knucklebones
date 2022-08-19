@@ -49,20 +49,29 @@ function App() {
   // Effects
   // Check if the game is over
   React.useEffect(() => {
+    setScorePlayerOne(calcPlayerOneScores());
     checkGameOver();
   }, [playerOneData]);
+
   React.useEffect(() => {
+    setScorePlayerTwo(calcPlayerTwoScores());
     checkGameOver();
   }, [playerTwoData]);
 
   // Helpers
-  function updateScores(dice, player) {
-    if (player === 1) {
-      setScorePlayerOne((prev) => prev + dice);
+  function calcPlayerOneScores() {
+    let score = 0;
+    for (let tile in playerOneData.board) {
+      score += playerOneData.board[tile];
     }
-    if (player === 2) {
-      setScorePlayerTwo((prev) => prev + dice);
+    return score;
+  }
+  function calcPlayerTwoScores() {
+    let score = 0;
+    for (let tile in playerTwoData.board) {
+      score += playerTwoData.board[tile];
     }
+    return score;
   }
 
   function checkGameOver() {
@@ -110,7 +119,7 @@ function App() {
     }
   }
 
-  // Handlers
+  // Core Game Logic
   function placeDice(board, column) {
     if (gameState === "end") return;
 
@@ -149,7 +158,6 @@ function App() {
           setDice("top", "R3", dice);
         } else return;
       }
-      updateScores(dice, 2);
     }
     // bottom board update
     else {
@@ -178,7 +186,6 @@ function App() {
           setDice("bot", "R3", dice);
         } else return;
       }
-      updateScores(dice, 1);
     }
 
     // Reset dice on prev player and roll dice for next player
