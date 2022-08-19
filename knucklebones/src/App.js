@@ -3,15 +3,12 @@ import Player from "./components/Player";
 import Arena from "./components/Arena";
 import React from "react";
 
+// bottom board
 function App() {
   // State
   const [playerOneData, setPlayerOneData] = React.useState({
     id: 1,
-    scoreTotal: 0,
     currentDice: rollDice(),
-    scoreLeft: 0,
-    scoreMiddle: 0,
-    scoreRight: 0,
     board: {
       L1: null,
       L2: null,
@@ -25,13 +22,10 @@ function App() {
     },
   });
 
+  // top board
   const [playerTwoData, setPlayerTwoData] = React.useState({
     id: 2,
-    scoreTotal: 0,
     currentDice: null,
-    scoreLeft: 0,
-    scoreMiddle: 0,
-    scoreRight: 0,
     board: {
       L1: null,
       L2: null,
@@ -49,6 +43,39 @@ function App() {
 
   const [gameState, setGameState] = React.useState("playing");
 
+  const [scorePlayerOne, setScorePlayerOne] = React.useState(0);
+  const [scorePlayerTwo, setScorePlayerTwo] = React.useState(0);
+
+  // Update the scores each cycle
+  function updateScores(dice, player) {
+    if (player === 1) {
+      setScorePlayerOne((prev) => prev + dice);
+    }
+    if (player === 2) {
+      setScorePlayerTwo((prev) => prev + dice);
+    }
+  }
+
+  function setDice(board, location, dice) {
+    if (board === "top") {
+      setPlayerTwoData((prev) => {
+        let newData = {
+          ...prev,
+        };
+        newData.board[location] = dice;
+        return newData;
+      });
+    } else {
+      setPlayerOneData((prev) => {
+        let newData = {
+          ...prev,
+        };
+        newData.board[location] = dice;
+        return newData;
+      });
+    }
+  }
+
   // Handlers
   function placeDice(board, column) {
     // Get the current dice number
@@ -59,18 +86,64 @@ function App() {
     if (board === "top" && currentTurn === 1) return;
     if (board === "bot" && currentTurn === 2) return;
 
-    console.log(dice, board, column);
-
-    // Check is the column is already full, if so, return
+    // Try to place the dice in an empty spot
     if (board === "top") {
-      // if column is the left column
-      // check if first row is empty, if so place in that row
-      // check if the second row is empty, if so place in that row
-      // check if the third row is empty, if so place in that row
-      // if all full, return
+      if (column === "L") {
+        if (!playerTwoData.board.L1) {
+          setDice("top", "L1", dice);
+        } else if (!playerTwoData.board.L2) {
+          setDice("top", "L2", dice);
+        } else if (!playerTwoData.board.L3) {
+          setDice("top", "L3", dice);
+        } else return;
+      } else if (column === "M") {
+        if (!playerTwoData.board.M1) {
+          setDice("top", "M1", dice);
+        } else if (!playerTwoData.board.M2) {
+          setDice("top", "M2", dice);
+        } else if (!playerTwoData.board.M3) {
+          setDice("top", "M3", dice);
+        } else return;
+      } else {
+        if (!playerTwoData.board.R1) {
+          setDice("top", "R1", dice);
+        } else if (!playerTwoData.board.R2) {
+          setDice("top", "R2", dice);
+        } else if (!playerTwoData.board.R3) {
+          setDice("top", "R3", dice);
+        } else return;
+      }
+      updateScores(dice, 2);
     }
-
-    // Update the board state
+    // bottom board update
+    else {
+      if (column === "L") {
+        if (!playerOneData.board.L1) {
+          setDice("bot", "L1", dice);
+        } else if (!playerOneData.board.L2) {
+          setDice("bot", "L2", dice);
+        } else if (!playerOneData.board.L3) {
+          setDice("bot", "L3", dice);
+        } else return;
+      } else if (column === "M") {
+        if (!playerOneData.board.M1) {
+          setDice("bot", "M1", dice);
+        } else if (!playerOneData.board.M2) {
+          setDice("bot", "M2", dice);
+        } else if (!playerOneData.board.M3) {
+          setDice("bot", "M3", dice);
+        } else return;
+      } else {
+        if (!playerOneData.board.R1) {
+          setDice("bot", "R1", dice);
+        } else if (!playerOneData.board.R2) {
+          setDice("bot", "R2", dice);
+        } else if (!playerOneData.board.R3) {
+          setDice("bot", "R3", dice);
+        } else return;
+      }
+      updateScores(dice, 1);
+    }
 
     // Check if the game is over
 
@@ -107,15 +180,20 @@ function App() {
     <div className="App">
       <Player
         playerNumber="one"
-        score={playerOneData.scoreTotal}
+        score={scorePlayerOne}
         currentDice={playerOneData.currentDice}
         currentTurn={currentTurn}
         playerId={playerOneData.id}
       />
-      <Arena placeDice={placeDice} currentTurn={currentTurn} />
+      <Arena
+        placeDice={placeDice}
+        currentTurn={currentTurn}
+        boardTop={playerTwoData.board}
+        boardBot={playerOneData.board}
+      />
       <Player
         playerNumber="two"
-        score={playerTwoData.scoreTotal}
+        score={scorePlayerTwo}
         currentDice={playerTwoData.currentDice}
         currentTurn={currentTurn}
         playerId={playerTwoData.id}
