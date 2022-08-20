@@ -23,6 +23,18 @@ function Arena(props) {
           {props.boardTop.R1 + props.boardTop.R2 + props.boardTop.R3}
         </div>
       </div>
+      {props.gameState === "playerOneWins" && <h1>Player One Wins!</h1>}
+      {props.gameState === "playerTwoWins" && <h1>Player Two Wins!</h1>}
+      {props.gameState === "playerOneWins" && (
+        <button className="reset-button" onClick={() => props.resetGame()}>
+          Play Again
+        </button>
+      )}
+      {props.gameState === "playerTwoWins" && (
+        <button className="reset-button" onClick={() => props.resetGame()}>
+          Play Again
+        </button>
+      )}
       <div className="board board--bottom">
         <div className="score" onClick={() => props.placeDice("bot", "L")}>
           {props.boardBot.L1 + props.boardBot.L2 + props.boardBot.L3}

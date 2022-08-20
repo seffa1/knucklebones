@@ -59,6 +59,41 @@ function App() {
   }, [playerTwoData]);
 
   // Helpers
+  function resetGame() {
+    console.log("Resetting game");
+    setGameState("playing");
+    setPlayerOneData({
+      id: 1,
+      currentDice: rollDice(),
+      board: {
+        L1: 4,
+        L2: 4,
+        L3: 4,
+        M1: 4,
+        M2: 4,
+        M3: 4,
+        R1: null,
+        R2: null,
+        R3: null,
+      },
+    });
+    setPlayerTwoData({
+      id: 2,
+      currentDice: null,
+      board: {
+        L1: 4,
+        L2: 4,
+        L3: 4,
+        M1: 4,
+        M2: 4,
+        M3: 4,
+        R1: null,
+        R2: null,
+        R3: null,
+      },
+    });
+  }
+
   function calcPlayerOneScores() {
     let score = 0;
     for (let tile in playerOneData.board) {
@@ -75,8 +110,8 @@ function App() {
   }
 
   function checkGameOver() {
-    console.log("Checking game over...");
-    if (gameState === "end") return;
+    if (gameState === "playerOneWins") return;
+    if (gameState === "playerTwoWins") return;
 
     // assume both boards are full
     let playerOneFull = true;
@@ -94,9 +129,8 @@ function App() {
       if (!playerTwoData.board[tile]) playerTwoFull = false;
     }
 
-    console.log("game over? " + (playerOneFull || playerTwoFull));
-
-    if (playerOneFull || playerTwoFull) setGameState("end");
+    if (playerOneFull) setGameState("playerOneWins");
+    if (playerTwoFull) setGameState("playerTwoWins");
   }
 
   function setDice(board, location, dice) {
@@ -121,7 +155,8 @@ function App() {
 
   // Core Game Logic
   function placeDice(board, column) {
-    if (gameState === "end") return;
+    if (gameState === "playerOneWins") return;
+    if (gameState === "playerTwoWins") return;
 
     // Get the current dice number
     let dice =
@@ -231,6 +266,8 @@ function App() {
         currentTurn={currentTurn}
         boardTop={playerTwoData.board}
         boardBot={playerOneData.board}
+        gameState={gameState}
+        resetGame={resetGame}
       />
       <Player
         playerNumber="two"

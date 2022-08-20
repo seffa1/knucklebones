@@ -94,7 +94,7 @@ h3 {
   height: 50px;
   font-size: 1.5rem;
   font-weight: 700;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
 .score:hover {
@@ -103,6 +103,23 @@ h3 {
   font-size: 2.5rem;
   font-weight: 700;
   cursor: pointer;
+}
+
+.reset-button {
+  margin: 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(91, 91, 91);
+  color: white;
+  font-size: larger;
+  transition: font-size 0.2s;
+}
+
+.reset-button:hover {
+  background-color: rgb(110, 110, 110);
+  cursor: pointer;
+  font-size: x-large;
 }
 
 @media screen and (max-width: 800px) {
