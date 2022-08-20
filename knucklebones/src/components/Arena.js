@@ -14,13 +14,13 @@ function Arena(props) {
         <div className="tile M1--top">M1 {props.boardTop.M1}</div>
         <div className="tile R1--top">R1 {props.boardTop.R1}</div>
         <div className="score" onClick={() => props.placeDice("top", "L")}>
-          {props.boardTop.L1 + props.boardTop.L2 + props.boardTop.L3}
+          {props.scorePlayerTwo[0]}
         </div>
         <div className="score" onClick={() => props.placeDice("top", "M")}>
-          {props.boardTop.M1 + props.boardTop.M2 + props.boardTop.M3}
+          {props.scorePlayerTwo[1]}
         </div>
         <div className="score" onClick={() => props.placeDice("top", "R")}>
-          {props.boardTop.R1 + props.boardTop.R2 + props.boardTop.R3}
+          {props.scorePlayerTwo[2]}
         </div>
       </div>
       {props.gameState === "playerOneWins" && <h1>Player One Wins!</h1>}
@@ -37,13 +37,13 @@ function Arena(props) {
       )}
       <div className="board board--bottom">
         <div className="score" onClick={() => props.placeDice("bot", "L")}>
-          {props.boardBot.L1 + props.boardBot.L2 + props.boardBot.L3}
+          {props.scorePlayerOne[0]}
         </div>
         <div className="score" onClick={() => props.placeDice("bot", "M")}>
-          {props.boardBot.M1 + props.boardBot.M2 + props.boardBot.M3}
+          {props.scorePlayerOne[1]}
         </div>
         <div className="score" onClick={() => props.placeDice("bot", "R")}>
-          {props.boardBot.R1 + props.boardBot.R2 + props.boardBot.R3}
+          {props.scorePlayerOne[2]}
         </div>
         <div className="tile L1--bot">L1 {props.boardBot.L1}</div>
         <div className="tile M1--bot">M1 {props.boardBot.M1}</div>

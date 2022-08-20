@@ -10,12 +10,12 @@ function App() {
     id: 1,
     currentDice: rollDice(),
     board: {
-      L1: 4,
-      L2: 4,
-      L3: 4,
-      M1: 4,
-      M2: 4,
-      M3: 4,
+      L1: 2,
+      L2: 2,
+      L3: 2,
+      M1: 3,
+      M2: 3,
+      M3: 1,
       R1: null,
       R2: null,
       R3: null,
@@ -43,8 +43,8 @@ function App() {
 
   const [gameState, setGameState] = React.useState("playing");
 
-  const [scorePlayerOne, setScorePlayerOne] = React.useState(0);
-  const [scorePlayerTwo, setScorePlayerTwo] = React.useState(0);
+  const [scorePlayerOne, setScorePlayerOne] = React.useState([0, 0, 0]);
+  const [scorePlayerTwo, setScorePlayerTwo] = React.useState([0, 0, 0]);
 
   // Effects
   // Check if the game is over
@@ -95,18 +95,29 @@ function App() {
   }
 
   function calcPlayerOneScores() {
-    let score = 0;
-    for (let tile in playerOneData.board) {
-      score += playerOneData.board[tile];
-    }
-    return score;
+    let tilesLeft = Object.values(playerOneData.board).splice(0, 3);
+    let scoreLeft = calcColumnScore(tilesLeft);
+
+    let tilesMid = Object.values(playerOneData.board).splice(3, 6);
+    let scoreMid = calcColumnScore(tilesMid);
+
+    let tilesRight = Object.values(playerOneData.board).splice(6, 9);
+    let scoreRight = calcColumnScore(tilesRight);
+
+    return [scoreLeft, scoreMid, scoreRight];
   }
+
   function calcPlayerTwoScores() {
-    let score = 0;
-    for (let tile in playerTwoData.board) {
-      score += playerTwoData.board[tile];
-    }
-    return score;
+    let tilesLeft = Object.values(playerTwoData.board).splice(0, 3);
+    let scoreLeft = calcColumnScore(tilesLeft);
+
+    let tilesMid = Object.values(playerTwoData.board).splice(3, 6);
+    let scoreMid = calcColumnScore(tilesMid);
+
+    let tilesRight = Object.values(playerTwoData.board).splice(6, 9);
+    let scoreRight = calcColumnScore(tilesRight);
+
+    return [scoreLeft, scoreMid, scoreRight];
   }
 
   function checkGameOver() {
@@ -251,6 +262,23 @@ function App() {
     return Math.floor(Math.random() * 6 + 1);
   }
 
+  function calcColumnScore(tiles) {
+    // tiles = [2, 2, 3]
+    if (tiles[0] === tiles[1]) {
+      if (tiles[0] === tiles[2]) {
+        return tiles[0] * 3 * 3;
+      } else {
+        return tiles[0] * 2 * 2 + tiles[2];
+      }
+    } else if (tiles[0] === tiles[2]) {
+      return tiles[0] * 2 * 2 + tiles[1];
+    } else if (tiles[1] === tiles[2]) {
+      return tiles[0] + tiles[1] * 2 * 2;
+    } else {
+      return tiles[0] + tiles[1] + tiles[2];
+    }
+  }
+
   // Rendering
   return (
     <div className="App">
@@ -268,6 +296,8 @@ function App() {
         boardBot={playerOneData.board}
         gameState={gameState}
         resetGame={resetGame}
+        scorePlayerOne={scorePlayerOne}
+        scorePlayerTwo={scorePlayerTwo}
       />
       <Player
         playerNumber="two"
