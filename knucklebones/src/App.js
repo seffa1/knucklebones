@@ -56,6 +56,18 @@ function App() {
   }, [playerTwoData]);
 
   // Helpers
+  function slideTiles(board) {
+    if (board === "top") {
+      // slide playerOneBoards
+      return;
+    }
+
+    if (board === "bot") {
+      // slide playerTwoBoards
+      return;
+    }
+  }
+
   function clearMatches(board, location, dice) {
     // console.log("board", board);
     // console.log("location", location);
@@ -202,7 +214,6 @@ function App() {
         newData.board[location] = dice;
         return newData;
       });
-      clearMatches(board, location, dice);
     } else {
       setPlayerOneData((prev) => {
         let newData = {
@@ -211,8 +222,9 @@ function App() {
         newData.board[location] = dice;
         return newData;
       });
-      clearMatches(board, location, dice);
     }
+    clearMatches(board, location, dice);
+    slideTiles(board);
   }
 
   // Core Game Logic
