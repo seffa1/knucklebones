@@ -57,9 +57,9 @@ function App() {
 
   // Helpers
   function clearMatches(board, location, dice) {
-    console.log("board", board);
-    console.log("location", location);
-    console.log("dice", dice);
+    // console.log("board", board);
+    // console.log("location", location);
+    // console.log("dice", dice);
 
     if (board === "top") {
       if (location[0] === "L") {
@@ -67,23 +67,44 @@ function App() {
         let tilesToCheck = Object.entries(playerOneData.board).filter(
           (tileData) => tileData[0][0] === "L"
         );
+        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
       } else if (location[0] === "M") {
         // get tiles from bot where keys start with M
+        let tilesToCheck = Object.entries(playerOneData.board).filter(
+          (tileData) => tileData[0][0] === "M"
+        );
+        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
       } else if (location[0] === "R") {
         // get tiles from bot where keys start with R
+        let tilesToCheck = Object.entries(playerOneData.board).filter(
+          (tileData) => tileData[0][0] === "R"
+        );
+        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
       }
     } else if (board === "bot") {
       if (location[0] === "L") {
         // get tiles from top where keys start with L
+        let tilesToCheck = Object.entries(playerTwoData.board).filter(
+          (tileData) => tileData[0][0] === "L"
+        );
+        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
       } else if (location[0] === "M") {
         // get tiles from top where keys start with M
+        let tilesToCheck = Object.entries(playerTwoData.board).filter(
+          (tileData) => tileData[0][0] === "M"
+        );
+        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
       } else if (location[0] === "R") {
         // get tiles from top where keys start with R
+        let tilesToCheck = Object.entries(playerTwoData.board).filter(
+          (tileData) => tileData[0][0] === "R"
+        );
+        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
       }
     }
