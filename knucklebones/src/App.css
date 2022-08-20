@@ -89,6 +89,11 @@ h3 {
   vertical-align: middle;
 }
 
+.tile-value {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
 .score {
   width: 100px;
   height: 50px;

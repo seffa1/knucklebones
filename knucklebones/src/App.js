@@ -12,11 +12,11 @@ function App() {
     board: {
       L1: 2,
       L2: 2,
-      L3: 2,
+      L3: null,
       M1: 3,
-      M2: 3,
-      M3: 1,
-      R1: null,
+      M2: null,
+      M3: null,
+      R1: 1,
       R2: null,
       R3: null,
     },
@@ -28,11 +28,11 @@ function App() {
     currentDice: null,
     board: {
       L1: 5,
-      L2: 5,
-      L3: 5,
-      M1: 5,
-      M2: 5,
-      M3: 5,
+      L2: 4,
+      L3: null,
+      M1: 3,
+      M2: 3,
+      M3: null,
       R1: null,
       R2: null,
       R3: null,
@@ -40,14 +40,11 @@ function App() {
   });
 
   const [currentTurn, setCurrentTurn] = React.useState(1);
-
   const [gameState, setGameState] = React.useState("playing");
-
   const [scorePlayerOne, setScorePlayerOne] = React.useState([0, 0, 0]);
   const [scorePlayerTwo, setScorePlayerTwo] = React.useState([0, 0, 0]);
 
   // Effects
-  // Check if the game is over
   React.useEffect(() => {
     setScorePlayerOne(calcPlayerOneScores());
     checkGameOver();
@@ -59,6 +56,39 @@ function App() {
   }, [playerTwoData]);
 
   // Helpers
+  function clearMatches(board, location, dice) {
+    console.log("board", board);
+    console.log("location", location);
+    console.log("dice", dice);
+
+    if (board === "top") {
+      if (location[0] === "L") {
+        // get tiles from bot where keys start with L
+        let tilesToCheck = Object.entries(playerOneData.board).filter(
+          (tileData) => tileData[0][0] === "L"
+        );
+        // for each tile in those, if its equal to dice, make it null
+      } else if (location[0] === "M") {
+        // get tiles from bot where keys start with M
+        // for each tile in those, if its equal to dice, make it null
+      } else if (location[0] === "R") {
+        // get tiles from bot where keys start with R
+        // for each tile in those, if its equal to dice, make it null
+      }
+    } else if (board === "bot") {
+      if (location[0] === "L") {
+        // get tiles from top where keys start with L
+        // for each tile in those, if its equal to dice, make it null
+      } else if (location[0] === "M") {
+        // get tiles from top where keys start with M
+        // for each tile in those, if its equal to dice, make it null
+      } else if (location[0] === "R") {
+        // get tiles from top where keys start with R
+        // for each tile in those, if its equal to dice, make it null
+      }
+    }
+  }
+
   function resetGame() {
     console.log("Resetting game");
     setGameState("playing");
@@ -153,6 +183,7 @@ function App() {
         newData.board[location] = dice;
         return newData;
       });
+      clearMatches(board, location, dice);
     } else {
       setPlayerOneData((prev) => {
         let newData = {
@@ -161,6 +192,7 @@ function App() {
         newData.board[location] = dice;
         return newData;
       });
+      clearMatches(board, location, dice);
     }
   }
 
