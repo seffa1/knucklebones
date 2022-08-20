@@ -10,14 +10,14 @@ function App() {
     id: 1,
     currentDice: rollDice(),
     board: {
-      L1: 2,
+      L1: 1,
       L2: 2,
       L3: null,
       M1: 3,
-      M2: null,
+      M2: 4,
       M3: null,
-      R1: 1,
-      R2: null,
+      R1: 5,
+      R2: 6,
       R3: null,
     },
   });
@@ -62,51 +62,49 @@ function App() {
     // console.log("dice", dice);
 
     if (board === "top") {
+      let boardToCheck = { ...playerOneData.board };
       if (location[0] === "L") {
-        // get tiles from bot where keys start with L
-        let tilesToCheck = Object.entries(playerOneData.board).filter(
-          (tileData) => tileData[0][0] === "L"
-        );
-        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
+        if (boardToCheck["L1"] === dice) boardToCheck["L1"] = null;
+        if (boardToCheck["L2"] === dice) boardToCheck["L2"] = null;
+        if (boardToCheck["L3"] === dice) boardToCheck["L3"] = null;
       } else if (location[0] === "M") {
-        // get tiles from bot where keys start with M
-        let tilesToCheck = Object.entries(playerOneData.board).filter(
-          (tileData) => tileData[0][0] === "M"
-        );
-        console.log(tilesToCheck);
+        if (boardToCheck["M1"] === dice) boardToCheck["M1"] = null;
+        if (boardToCheck["M2"] === dice) boardToCheck["M2"] = null;
+        if (boardToCheck["M3"] === dice) boardToCheck["M3"] = null;
+
         // for each tile in those, if its equal to dice, make it null
       } else if (location[0] === "R") {
-        // get tiles from bot where keys start with R
-        let tilesToCheck = Object.entries(playerOneData.board).filter(
-          (tileData) => tileData[0][0] === "R"
-        );
-        console.log(tilesToCheck);
-        // for each tile in those, if its equal to dice, make it null
+        if (boardToCheck["R1"] === dice) boardToCheck["R1"] = null;
+        if (boardToCheck["R2"] === dice) boardToCheck["R2"] = null;
+        if (boardToCheck["R3"] === dice) boardToCheck["R3"] = null;
       }
+      // update player one data
+      setPlayerOneData((prev) => {
+        return { ...prev, board: boardToCheck };
+      });
     } else if (board === "bot") {
+      let boardToCheck = { ...playerTwoData.board };
       if (location[0] === "L") {
-        // get tiles from top where keys start with L
-        let tilesToCheck = Object.entries(playerTwoData.board).filter(
-          (tileData) => tileData[0][0] === "L"
-        );
-        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
+        if (boardToCheck["L1"] === dice) boardToCheck["L1"] = null;
+        if (boardToCheck["L2"] === dice) boardToCheck["L2"] = null;
+        if (boardToCheck["L3"] === dice) boardToCheck["L3"] = null;
       } else if (location[0] === "M") {
-        // get tiles from top where keys start with M
-        let tilesToCheck = Object.entries(playerTwoData.board).filter(
-          (tileData) => tileData[0][0] === "M"
-        );
-        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
+        if (boardToCheck["M1"] === dice) boardToCheck["M1"] = null;
+        if (boardToCheck["M2"] === dice) boardToCheck["M2"] = null;
+        if (boardToCheck["M3"] === dice) boardToCheck["M3"] = null;
       } else if (location[0] === "R") {
-        // get tiles from top where keys start with R
-        let tilesToCheck = Object.entries(playerTwoData.board).filter(
-          (tileData) => tileData[0][0] === "R"
-        );
-        console.log(tilesToCheck);
         // for each tile in those, if its equal to dice, make it null
+        if (boardToCheck["R1"] === dice) boardToCheck["R1"] = null;
+        if (boardToCheck["R2"] === dice) boardToCheck["R2"] = null;
+        if (boardToCheck["R3"] === dice) boardToCheck["R3"] = null;
       }
+      // update player two data
+      setPlayerTwoData((prev) => {
+        return { ...prev, board: boardToCheck };
+      });
     }
   }
 
