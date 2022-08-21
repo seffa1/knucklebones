@@ -1,10 +1,11 @@
 import React from "react";
+import Dice from "./Dice";
 
 function Player(props) {
   return (
     <div className={`Player player--${props.playerNumber}`}>
       {props.playerNumber === "two" && props.currentDice && (
-        <h3>Current Dice: {props.currentDice}</h3>
+        <Dice number={props.currentDice} />
       )}
       <h1
         className={props.currentTurn === props.playerId ? "currentPlayer" : ""}
@@ -13,7 +14,7 @@ function Player(props) {
       </h1>
       <h2>{props.score[0] + props.score[1] + props.score[2]}</h2>
       {props.playerNumber === "one" && props.currentDice && (
-        <h3>Current Dice: {props.currentDice}</h3>
+        <Dice number={props.currentDice} />
       )}
     </div>
   );

@@ -87,11 +87,14 @@ h3 {
   justify-self: center;
   text-align: center;
   vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.tile-value {
-  font-size: 3rem;
-  font-weight: 800;
+.dice-img {
+  width: 80px;
+  height: 80px;
 }
 
 .score {

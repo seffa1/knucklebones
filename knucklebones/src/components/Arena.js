@@ -1,35 +1,36 @@
 import React from "react";
+import Dice from "./Dice";
 
 function Arena(props) {
   return (
     <div className="Arena">
       <div className="board board--top">
         <div className="tile L3--top">
-          L3 <div className="tile-value">{props.boardTop.L3}</div>
+          {props.boardTop.L3 && <Dice number={props.boardTop.L3} />}
         </div>
         <div className="tile M3--top">
-          M3 <div className="tile-value">{props.boardTop.M3}</div>
+          {props.boardTop.M3 && <Dice number={props.boardTop.M3} />}
         </div>
         <div className="tile R3--top">
-          R3 <div className="tile-value">{props.boardTop.R3}</div>
+          {props.boardTop.R3 && <Dice number={props.boardTop.R3} />}
         </div>
         <div className="tile L2--top">
-          L2 <div className="tile-value">{props.boardTop.L2}</div>
+          {props.boardTop.L2 && <Dice number={props.boardTop.L2} />}
         </div>
         <div className="tile M2--top">
-          M2 <div className="tile-value">{props.boardTop.M2}</div>
+          {props.boardTop.M2 && <Dice number={props.boardTop.M2} />}
         </div>
         <div className="tile R2--top">
-          R3 <div className="tile-value">{props.boardTop.R2}</div>
+          {props.boardTop.R2 && <Dice number={props.boardTop.R2} />}
         </div>
         <div className="tile L1--top">
-          L1 <div className="tile-value">{props.boardTop.L1}</div>
+          {props.boardTop.L1 && <Dice number={props.boardTop.L1} />}
         </div>
         <div className="tile M1--top">
-          M1 <div className="tile-value">{props.boardTop.M1}</div>
+          {props.boardTop.M1 && <Dice number={props.boardTop.M1} />}
         </div>
         <div className="tile R1--top">
-          R1 <div className="tile-value">{props.boardTop.R1}</div>
+          {props.boardTop.R1 && <Dice number={props.boardTop.R1} />}
         </div>
         <div className="score" onClick={() => props.placeDice("top", "L")}>
           {props.scorePlayerTwo[0]}
@@ -64,31 +65,31 @@ function Arena(props) {
           {props.scorePlayerOne[2]}
         </div>
         <div className="tile L1--bot">
-          L1 <div className="tile-value">{props.boardBot.L1}</div>
+          {props.boardBot.L1 && <Dice number={props.boardBot.L1} />}
         </div>
         <div className="tile M1--bot">
-          M1 <div className="tile-value">{props.boardBot.M1}</div>
+          {props.boardBot.M1 && <Dice number={props.boardBot.M1} />}
         </div>
         <div className="tile R1--bot">
-          R1 <div className="tile-value">{props.boardBot.R1}</div>
+          {props.boardBot.R1 && <Dice number={props.boardBot.R1} />}
         </div>
         <div className="tile L2--bot">
-          L2 <div className="tile-value">{props.boardBot.L2}</div>
+          {props.boardBot.L2 && <Dice number={props.boardBot.L2} />}
         </div>
         <div className="tile M2--bot">
-          M2 <div className="tile-value">{props.boardBot.M2}</div>
+          {props.boardBot.M2 && <Dice number={props.boardBot.M2} />}
         </div>
         <div className="tile R2--bot">
-          R2 <div className="tile-value">{props.boardBot.R2}</div>
+          {props.boardBot.R2 && <Dice number={props.boardBot.R2} />}
         </div>
         <div className="tile L3--bot">
-          L3 <div className="tile-value">{props.boardBot.L3}</div>
+          {props.boardBot.L3 && <Dice number={props.boardBot.L3} />}
         </div>
         <div className="tile M3--bot">
-          M3 <div className="tile-value">{props.boardBot.M3}</div>
+          {props.boardBot.M3 && <Dice number={props.boardBot.M3} />}
         </div>
         <div className="tile R3--bot">
-          R3 <div className="tile-value">{props.boardBot.R3}</div>
+          {props.boardBot.R3 && <Dice number={props.boardBot.R3} />}
         </div>
       </div>
     </div>
