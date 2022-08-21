@@ -16,7 +16,7 @@ function Dice(props) {
     6: dice_6,
   };
 
-  return <img src={source[props.number]} className="dice-img" />;
+  return <img src={source[props.number]} className="dice-img animate" />;
 }
 
 export default Dice;

@@ -10,8 +10,8 @@ function App() {
     id: 1,
     currentDice: rollDice(),
     board: {
-      L1: 1,
-      L2: 1,
+      L1: null,
+      L2: null,
       L3: null,
       M1: null,
       M2: null,

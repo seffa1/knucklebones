@@ -17,7 +17,9 @@ h3 {
   justify-content: space-around;
   align-items: center;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+  background-color: #ff0000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='862' height='103.4' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23221212' stroke-width='22.8' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 @media screen and (max-width: 800px) {
@@ -28,25 +30,40 @@ h3 {
 
 /* Player */
 .Player {
-  border: 5px solid black;
+  /* border: 5px solid black; */
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
 .player--one {
   justify-content: flex-end;
   padding-bottom: 30vh;
+  background: linear-gradient();
+  background: linear-gradient(
+    270deg,
+    rgba(255, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 40%
+  );
 }
 
 .player--two {
   justify-content: flex-start;
   padding-top: 30vh;
+  background: rgb(255, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 40%
+  );
 }
 
 .currentPlayer {
-  background-color: gold;
+  font-size: 3rem;
 }
 
 @media screen and (max-width: 800px) {
@@ -60,7 +77,7 @@ h3 {
 
 /* Arena */
 .Arena {
-  border: 5px solid black;
+  /* border: 5px solid black; */
   width: 100%;
   height: 100%;
   display: flex;
@@ -73,7 +90,7 @@ h3 {
 .board {
   max-width: 500px;
   margin: 1rem;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem 2rem;
@@ -82,8 +99,9 @@ h3 {
 .tile {
   width: 100px;
   height: 100px;
-  background: black;
-  color: white;
+  /* background: white; */
+  border: 3px solid white;
+  /* color: white; */
   justify-self: center;
   text-align: center;
   vertical-align: middle;
@@ -95,20 +113,40 @@ h3 {
 .dice-img {
   width: 80px;
   height: 80px;
+  border-radius: 6px;
+}
+
+.animate {
+  animation-duration: 0.3s;
+  animation-name: animate-fade;
+  animation-delay: 0s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
 }
 
 .score {
   width: 100px;
   height: 50px;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
   transition: all 0.2s;
+  color: wheat;
 }
 
 .score:hover {
   width: 100px;
   height: 50px;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
   cursor: pointer;
 }
