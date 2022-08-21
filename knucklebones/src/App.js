@@ -11,13 +11,13 @@ function App() {
     currentDice: rollDice(),
     board: {
       L1: 1,
-      L2: 2,
+      L2: 1,
       L3: null,
-      M1: 3,
-      M2: 4,
+      M1: null,
+      M2: null,
       M3: null,
-      R1: 5,
-      R2: 6,
+      R1: null,
+      R2: null,
       R3: null,
     },
   });
@@ -27,11 +27,11 @@ function App() {
     id: 2,
     currentDice: null,
     board: {
-      L1: 5,
-      L2: 4,
+      L1: null,
+      L2: null,
       L3: null,
-      M1: 3,
-      M2: 3,
+      M1: null,
+      M2: null,
       M3: null,
       R1: null,
       R2: null,
@@ -57,14 +57,34 @@ function App() {
 
   // Helpers
   function slideTiles(board) {
-    if (board === "top") {
-      // slide playerOneBoards
-      return;
-    }
+    let columns = [
+      ["L1", "L2", "L3"],
+      ["M1", "M2", "M3"],
+      ["R1", "R2", "R3"],
+    ];
 
-    if (board === "bot") {
-      // slide playerTwoBoards
-      return;
+    for (let column of columns) {
+      // slide row 2 to row 1
+      if (board[column[1]]) {
+        if (!board[column[0]]) {
+          board[column[0]] = board[column[1]];
+          board[column[1]] = null;
+        }
+      }
+      // slide row 3 to row 2
+      if (board[column[2]]) {
+        if (!board[column[1]]) {
+          board[column[1]] = board[column[2]];
+          board[column[2]] = null;
+          // then try to slide it to row 1
+          if (board[column[1]]) {
+            if (!board[column[0]]) {
+              board[column[0]] = board[column[1]];
+              board[column[1]] = null;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -91,6 +111,9 @@ function App() {
         if (boardToCheck["R2"] === dice) boardToCheck["R2"] = null;
         if (boardToCheck["R3"] === dice) boardToCheck["R3"] = null;
       }
+      // slide tiles to front
+      slideTiles(boardToCheck);
+
       // update player one data
       setPlayerOneData((prev) => {
         return { ...prev, board: boardToCheck };
@@ -113,6 +136,9 @@ function App() {
         if (boardToCheck["R2"] === dice) boardToCheck["R2"] = null;
         if (boardToCheck["R3"] === dice) boardToCheck["R3"] = null;
       }
+      // slide tiles to front
+      slideTiles(boardToCheck);
+
       // update player two data
       setPlayerTwoData((prev) => {
         return { ...prev, board: boardToCheck };
@@ -127,12 +153,12 @@ function App() {
       id: 1,
       currentDice: rollDice(),
       board: {
-        L1: 4,
-        L2: 4,
-        L3: 4,
-        M1: 4,
-        M2: 4,
-        M3: 4,
+        L1: null,
+        L2: null,
+        L3: null,
+        M1: null,
+        M2: null,
+        M3: null,
         R1: null,
         R2: null,
         R3: null,
@@ -142,12 +168,12 @@ function App() {
       id: 2,
       currentDice: null,
       board: {
-        L1: 4,
-        L2: 4,
-        L3: 4,
-        M1: 4,
-        M2: 4,
-        M3: 4,
+        L1: null,
+        L2: null,
+        L3: null,
+        M1: null,
+        M2: null,
+        M3: null,
         R1: null,
         R2: null,
         R3: null,
