@@ -12,7 +12,9 @@ function Player(props) {
       >
         Player {props.playerNumber}
       </h1>
-      <h2>Score: {props.score[0] + props.score[1] + props.score[2]}</h2>
+      <h2 className="player-score">
+        Score: {props.score[0] + props.score[1] + props.score[2]}
+      </h2>
       {props.playerNumber === "one" && props.currentDice && (
         <Dice number={props.currentDice} />
       )}

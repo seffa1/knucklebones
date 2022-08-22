@@ -24,7 +24,7 @@ h3 {
 
 @media screen and (max-width: 800px) {
   .App {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 
@@ -38,6 +38,7 @@ h3 {
   justify-content: center;
   align-items: center;
   color: white;
+  font-size: 1rem;
 }
 
 .player--one {
@@ -63,7 +64,9 @@ h3 {
 }
 
 .currentPlayer {
-  font-size: 3rem;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fb0404,
+    0 0 30px #fb0404, 0 0 40px #fb0404, 0 0 55px #fb0404, 0 0 75px #fb0404;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 800px) {
@@ -72,6 +75,32 @@ h3 {
     padding: 0;
     justify-content: center;
     flex-shrink: 1;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-right: 3rem;
+  }
+
+  .player--one {
+    background: linear-gradient();
+    background: linear-gradient(
+      180deg,
+      rgba(255, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 40%
+    );
+  }
+
+  .player--two {
+    background: linear-gradient();
+    background: linear-gradient(
+      0deg,
+      rgba(255, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 40%
+    );
+  }
+
+  .dice-img {
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -84,7 +113,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
+  /* gap: 5rem */
 }
 
 .board {
@@ -99,9 +128,7 @@ h3 {
 .tile {
   width: 100px;
   height: 100px;
-  /* background: white; */
   border: 3px solid white;
-  /* color: white; */
   justify-self: center;
   text-align: center;
   vertical-align: middle;
@@ -137,7 +164,6 @@ h3 {
 .score {
   width: 100px;
   height: 50px;
-  font-size: 2.5rem;
   font-weight: 700;
   transition: all 0.2s;
   color: wheat;
@@ -171,5 +197,24 @@ h3 {
 @media screen and (max-width: 800px) {
   .Arena {
     gap: 0;
+  }
+
+  .board {
+    gap: 0.1rem;
+    margin: 0;
+  }
+
+  .tile {
+    width: 70px;
+    height: 70px;
+  }
+
+  .dice-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .score {
+    font-size: 1.5rem;
   }
 }
